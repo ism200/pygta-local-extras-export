@@ -1,38 +1,27 @@
-[build-system]
-requires = ["setuptools>=69"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "pygta-local-extras"
+name = "pygta-ivo"
 version = "0.1.0"
-description = "Local helper utilities for the pygta workspace."
-readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 dependencies = [
-	"numpy",
-	"pandas",
-	"xarray",
+    "ipykernel>=7.2.0",
+    "nbconvert>=7.17.1",
+    "pandoc>=2.4",
+    "pyglotaran",
+    "pyglotaran-extras",
+    "pygta-local-extras @ git+https://github.com/ism200/pygta-local-extras-export.git@main",
+    "isort==8.0.1",
+    "pip==25.3",
+    "pre-commit==4.6.0",
+    "pytest",
 ]
 
-[tool.setuptools]
-packages = [
-	"pygta_local_extras",
-	"pygta_local_extras.analysis",
-	"pygta_local_extras.io",
-	"pygta_local_extras.selection",
-]
-
-[tool.setuptools.package-dir]
-pygta_local_extras = "src"
-"pygta_local_extras.analysis" = "src/analysis"
-"pygta_local_extras.io" = "src/io"
-"pygta_local_extras.selection" = "src/selection"
+[tool.uv.sources]
+pyglotaran = { git = "https://github.com/ism200/pyglotaran.git", branch = "scale_list" }
+pyglotaran-extras = { git = "https://github.com/ism200/pyglotaran-extras.git", branch = "new-kinetic-scheme-visualizer-2" }
+pygta-local-extras = { git = "https://github.com/ism200/pygta-local-extras-export.git", branch = "main" }
 
 [dependency-groups]
 dev = [
-	"pre-commit>=4.3.0",
+    "pre-commit>=4.3.0",
     "pytest>=9.0.3",
 ]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
